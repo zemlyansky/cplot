@@ -1,0 +1,37 @@
+{
+  "name": "cplot",
+  "version": "0.0.1",
+  "description": "Generate SVG plots",
+  "main": "index.js",
+  "bin" : {
+    "cplot": "bin/cmd.js"
+  },
+  "scripts": {
+    "clean": "rimraf wasm && rimraf wrapper",
+    "mkdirs": "mkdir wasm && mkdir wrapper",
+    "prepare-wasm": "node prepare-wasm.js",
+    "test": "tape test.js",
+    "build": "npm run clean && npm run mkdirs && make build && npm run prepare-wasm && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zemlyansky/cplot"
+  },
+  "keywords": [
+    "visualization",
+    "plot",
+    "svg",
+    "web-assembly",
+    "wasm",
+    "functional"
+  ],
+  "author": "Anton Zemlyansky",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "tape": "^4.13.2"
+  },
+  "dependencies": {
+    "minimist": "^1.2.5"
+  }
+}
