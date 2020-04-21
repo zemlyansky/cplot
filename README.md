@@ -1,6 +1,8 @@
-#cplot
+# cplot
 
-**Generate SVG plots in the browser and Node.js** 
+**Generate SVG plots in the browser and Node.js**
+
+![cplot](./assets/cplot.svg)
 
 Most plotting JS libraries rely on the DOM (browser) for rendering. 
 That makes a server-side chart rendering harder (using libs like `jsdom` or `puppeteer`). 
@@ -105,17 +107,30 @@ You can generate plots calling `cplot` from the command line. Install `cplot` gl
 npm install cplot -g
 ```
 
-* Pass DSL or JSON input via stream
-```
+* Pass DSL, CSV or JSON input via stream
+```bash
 cat plot.json | cplot > plot.svg
 ```
 * Provide file names as parameters
-```
+```bash
 cplot plot.json -o plot.svg
 ```
 * Pass a sequence of numbers
-```
+```bash
 echo "1 2 3 4 5" | cplot > plot.svg
+```
+
+**Parameters**:
+- `-w`, `--width` - svg width
+- `-h`, `--height` - svg height
+- `-t`, `--title` - plot title
+- `-k`, `--kind` - plot kind (`plot`, `scatter` or `bar`)
+- `-m`, `--marker` - markers style
+- `-c`, `--color` - plot color(s)
+
+If you don't provide a file name with the `-o` parameter `cplot` outputs the generated SVG to `stdout`, so you can embed in more complex linux pipelines:
+```bash
+cat wpbc.csv | csvcut -c mean_radius,mean_texture | cplot | display svg:-
 ```
 
 ### Examples

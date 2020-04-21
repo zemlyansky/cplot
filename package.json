@@ -1,6 +1,6 @@
 {
   "name": "cplot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate SVG plots in the browser and Node.js",
   "main": "index.js",
   "bin": {
