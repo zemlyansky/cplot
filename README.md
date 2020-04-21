@@ -2,8 +2,6 @@
 
 **Generate SVG plots in the browser and Node.js**
 
-![cplot](./assets/cplot.svg)
-
 Most plotting JS libraries rely on the DOM (browser) for rendering. 
 That makes a server-side chart rendering harder (using libs like `jsdom` or `puppeteer`). 
 `cplot` makes it possible to generate SVG plots without the DOM in a very simple functional approach (data in -> svg out)
