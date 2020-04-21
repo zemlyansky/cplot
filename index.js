@@ -21,7 +21,9 @@ module.exports = function cplot (input, y) {
         label: y ? 'Y' : 'Data'
       },
       plot: {
-        color: 'blue',
+        color: '#252FBB',
+        marker: 'o',
+        ls: y ? 'none' : '-',
         x: y ? input : input.map((_, i) => i),
         y: y || input
       }

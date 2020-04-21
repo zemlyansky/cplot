@@ -1,6 +1,6 @@
 dist/
 example/
 node_modules/
-native/
+charter/
 *.swp
 npm-debug.log
