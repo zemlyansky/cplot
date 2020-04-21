@@ -3,7 +3,7 @@ function stringify (obj, p = 0) {
   let result = ''
   Object.keys(obj).forEach(key => {
     const val = obj[key]
-    let str = pad + key.replace('A', '_a') + ': ' // yAxis -> y_axis
+    let str = pad + key.replace('A', '-a') + ': ' // yAxis -> y_axis
     if (key === 'plots') {
       str = ''
       val.forEach(plot => {
