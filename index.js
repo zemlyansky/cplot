@@ -1,13 +1,13 @@
 const Module = require('./wasm/native.js')
 const bin = require('./wrapper/native.bin.js')
-const { stringify } = require('./src/util.js')
+const { stringify, histogram } = require('./src/util.js')
 const m = Module({ wasmBinary: bin.data })
 
 const _charter = m.cwrap('charter', 'string', ['string'])
 
 module.exports = function cplot (input, y) {
   if (typeof input === 'string') {
-    if (input.search('plot') >= 0 || input.search('title') >= 0) {
+    if (input.search('plot') >= 0 || input.search('bar') >= 0 || input.search('scatter') >= 0) {
       return _charter(input)
     } else {
       return cplot(input.split(' '))
@@ -29,6 +29,18 @@ module.exports = function cplot (input, y) {
       }
     }
     return _charter(stringify(newInput))
+  } else if (typeof input === 'object') {
+    Object.keys(input).forEach(key => {
+      if (key === 'hist' || key === 'dist') {
+        input[key === 'hist' ? 'bar' : 'plot'] = histogram(input[key])
+        delete input[key]
+      } else if (key === 'hists' || key === 'dists') {
+        input[key === 'hists' ? 'bars' : 'plots'] = input[key].map(obj => histogram(obj))
+        delete input[key]
+      }
+    })
+    return _charter(stringify(input))
+  } else {
+    throw new Error('Unknow input type')
   }
-  return _charter(stringify(input))
 }

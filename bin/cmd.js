@@ -10,10 +10,12 @@ const argv = require('minimist')(process.argv.slice(2), {
     height: 'h',
     kind: 'k',
     marker: 'm',
-    color: 'c'
+    color: 'c',
+    bins: 'b'
   },
   default: {
-    kind: 'default'
+    kind: 'default',
+    bins: 80
   }
 })
 
@@ -58,6 +60,7 @@ try {
         param[argv.kind === 'default' ? 'plot' : argv.kind] = {
           color: argv.color || '#252FBB',
           marker: argv.marker || 'o',
+          bins: argv.bins || undefined,
           x: records.map((_, i) => i),
           y: records.map(row => row[0])
         }
@@ -93,6 +96,7 @@ try {
           return {
             color: argv.color && argv.color.length ? argv.color[hi] : pallete[hi],
             marker: argv.marker || 'o',
+            bins: argv.bins || undefined,
             x: records.map((_, i) => i),
             y: records.map(row => row[hi])
           }
